@@ -81,11 +81,11 @@ default:
   PINOT_USER: user
   # PostgresSQL
   POSTGRES_CONNECT_TIMEOUT: 10
-  POSTGRES_DBNAME: postgres
+  POSTGRES_DBNAME: mage_db
   POSTGRES_SCHEMA: public # Optional
-  POSTGRES_USER: username
-  POSTGRES_PASSWORD: password
-  POSTGRES_HOST: hostname
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: admin
+  POSTGRES_HOST: postgres
   POSTGRES_PORT: 5432
   # Qdrant
   QDRANT_COLLECTION: collection
