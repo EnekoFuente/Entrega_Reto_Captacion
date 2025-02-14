@@ -13,17 +13,18 @@ if 'test' not in globals():
 def load_data_from_postgres(data, *args, **kwargs):
     """
     Carga los datos en la tabla ventas_transformado en PostgreSQL.
+    Si los datos ya existen, los reemplaza.
     """
-
     config_path = path.join(get_repo_path(), 'io_config.yaml')
     config_profile = 'default'
 
     with Postgres.with_config(ConfigFileLoader(config_path, config_profile)) as loader:
-        # Insertar los datos en la tabla ventas_transformado
+        # Insertar los datos en la tabla ventas_transformado, manejando duplicados
         loader.export(
             df=data,  # Asegurar que se pasa el DataFrame
             table_name='ventas_transformado',  # Nombre de la tabla en PostgreSQL
-            if_exists='append'  # Agregar datos sin borrar los existentes
+            if_exists='replace',  # Reemplazar los datos existentes
+            index=False  # No agregar el índice del DataFrame como columna
         )
 
     return data  # Devuelve los datos insertados
