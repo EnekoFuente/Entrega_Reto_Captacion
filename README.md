@@ -41,9 +41,84 @@ Una vez que los tres pipelines estaban configurados y conectados correctamente, 
 A lo largo del proceso, validamos que todo estuviera funcionando correctamente. Mage AI proporciona bloques de prueba que nos permitieron asegurarnos de que los datos estuvieran siendo procesados y almacenados de manera correcta, sin errores. Realizamos pruebas para verificar que los nombres de los productos se hubieran convertido a minúsculas y que el descuento del 10% se hubiera aplicado correctamente a los precios.
 
 ## Instrucciones de uso
-- Requisitos previos: Primero, asegúrate de tener instalados Docker, Docker-Compose, WSL/Linux y un editor de texto. Luego, clona el repositorio del proyecto con el comando “https://github.com/EnekoFuente/Entrega_Reto_Captacion.git”
+- Requisitos previos: Primero, asegúrate de tener instalados Docker, Docker-Compose, WSL/Linux y un editor de texto. Luego, clona el repositorio del proyecto con el comando “git clone https://github.com/EnekoFuente/Entrega_Reto_Captacion.git”
 El archivo .env ya está configurado, por lo que no necesitas modificarlo.
 Para iniciar los contenedores, ejecutar:  docker-compose up -d y para verificar que esta corriendo el contenedor docker ps
+Para añadir información a las tablas, "docker exec -it postgres -magic psql -U admin mage_db". Ahi, crea la tabla ventas de la siguiente manera:
+"CREATE TABLE ventas (
+  id SERIAL PRIMARY KEY,
+  producto VARCHAR(100),
+  cantidad INT,
+  precio DECIMAL(10,2),
+  fecha DATE DEFAULT CURRENT_DATE
+);"
+Una vez creada, procedemos a añadir información. He aqui un ejemplo de inserción de datos:
+"INSERT INTO ventas (producto, cantidad, precio) VALUES
+('Laptop', 2, 1200.50),
+('Teléfono', 5, 600.00),
+('Teclado', 10, 50.75),
+('Laptop', 15, 1200.50),
+('Teléfono', 30, 600.00),
+('Teclado', 50, 50.75),
+('Audífonos', 25, 75.00),
+('Monitor', 20, 250.00),
+('Mouse', 45, 20.50),
+('Impresora', 15, 150.00),
+('Router', 18, 85.00),
+('Tablet', 22, 210.00),
+('Cámara Web', 30, 45.00),
+('Smartwatch', 12, 150.00),
+('Disco Duro', 25, 90.00),
+('Mochila', 30, 30.00),
+('Teclado Mecánico', 18, 120.00),
+('Monitor Curvo', 14, 350.00),
+('Silla Ergonómica', 10, 220.00),
+('Bocina Bluetooth', 28, 65.00),
+('Cargador Inalámbrico', 35, 25.00),
+('Estabilizador', 12, 80.00),
+('Laptop Gaming', 8, 1500.00),
+('Proyector', 6, 450.00),
+('Consola de Videojuegos', 9, 350.00),
+('Soporte para Laptop', 38, 40.00),
+('Memoria RAM', 27, 85.00),
+('Ratón Gaming', 17, 55.00),
+('Cable HDMI', 50, 15.00),
+('Gafas VR', 8, 250.00),
+('Kit de Limpieza', 12, 15.00),
+('Base para Celular', 40, 20.00),
+('Cámara de Seguridad', 5, 150.00),
+('Altavoces', 14, 100.00),
+('Teclado Retroiluminado', 18, 60.00),
+('Estuche para Laptop', 21, 40.00),
+('Disco SSD', 22, 110.00),
+('Pantalla Táctil', 13, 320.00),
+('Lector de Tarjetas', 8, 25.00),
+('Proyector 4K', 4, 1200.00),
+('Papel Fotográfico', 16, 18.00),
+('Lentes para Ordenador', 10, 45.00),
+('Cargador Portátil', 28, 35.00),
+('Pantalla LED', 18, 400.00),
+('Auriculares In-Ear', 26, 30.00),
+('Base de Carga', 32, 20.00),
+('Smart TV', 7, 800.00),
+('Tetera Eléctrica', 5, 60.00),
+('Proyector Portátil', 6, 200.00),
+('Kit de Teclado y Ratón', 15, 40.00),
+('Silla de Oficina', 9, 150.00),
+('Cámara Digital', 4, 300.00),
+('Robot Aspiradora', 3, 350.00),
+('Flash USB', 40, 12.00),
+('Toner de Impresora', 22, 35.00),
+('Almohadilla para Mouse', 45, 10.00),
+('Soporte de Monitor', 35, 50.00),
+('Ventilador USB', 50, 15.00),
+('Barra de Sonido', 9, 100.00),
+('Reloj Inteligente', 20, 180.00),
+('Lámpara LED', 23, 35.00),
+('Parlante Inalámbrico', 30, 60.00),
+('Cámara Deportiva', 5, 250.00),
+('Adaptador Bluetooth', 17, 30.00),
+('Torre de Sonido', 8, 200.00);"
 
 Acceder a Mage AI: Una vez que los servicios estén activos, abre un navegador y accede a la interfaz de Mage AI empleando http://localhost:6789
 
