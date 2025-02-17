@@ -42,9 +42,13 @@ A lo largo del proceso, validamos que todo estuviera funcionando correctamente. 
 
 ## Instrucciones de uso
 - Requisitos previos: Primero, asegúrate de tener instalados Docker, Docker-Compose, WSL/Linux y un editor de texto. Luego, clona el repositorio del proyecto con el comando “git clone https://github.com/EnekoFuente/Entrega_Reto_Captacion.git”
+  
 El archivo .env ya está configurado, por lo que no necesitas modificarlo.
+
 Para iniciar los contenedores, ejecutar:  docker-compose up -d y para verificar que esta corriendo el contenedor docker ps
+
 Para añadir información a las tablas, "docker exec -it postgres -magic psql -U admin mage_db". Ahi, crea la tabla ventas de la siguiente manera:
+
 "CREATE TABLE ventas (
   id SERIAL PRIMARY KEY,
   producto VARCHAR(100),
@@ -52,7 +56,9 @@ Para añadir información a las tablas, "docker exec -it postgres -magic psql -U
   precio DECIMAL(10,2),
   fecha DATE DEFAULT CURRENT_DATE
 );"
+
 Una vez creada, procedemos a añadir información. He aqui un ejemplo de inserción de datos:
+
 "INSERT INTO ventas (producto, cantidad, precio) VALUES
 ('Laptop', 2, 1200.50),
 ('Teléfono', 5, 600.00),
